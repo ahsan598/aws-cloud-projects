@@ -1,0 +1,22 @@
+# === Logs & Temp ===
+*.log
+*.tmp
+
+# === AWS, Cert & Keys ===
+.aws/
+*.pem
+*.key
+*.pub
+*.crt
+*.cert
+*.bak
+
+# === IDEs ===
+.vscode/
+.idea/
+*.iml
+
+# === Build & Cache ===
+dist/
+build/
+cache/
