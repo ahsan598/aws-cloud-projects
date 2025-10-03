@@ -1,4 +1,4 @@
-# Lift & Shift Web App on AWS Cloud
+# Lift & Shift Migration of Web Application to AWS Cloud]
 
 ### 🎯 Purpose
 

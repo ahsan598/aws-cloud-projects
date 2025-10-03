@@ -1,4 +1,4 @@
-# <img src="https://github.com/devicons/devicon/blob/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" width="50"/> Aurora MySQL Database Setup
+# High-Availability Aurora MySQL Cluster on AWS
 
 This lab sets up a **highly available Aurora MySQL cluster** within a **custom VPC architecture** in AWS using manual configuration (AWS Console). It's part of my DevOps learning journey, focusing on understanding cloud networking, security, and managed database services.
 
