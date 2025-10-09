@@ -1,35 +1,33 @@
 # SSH into an EC2 Instance on AWS
 
-## 🧩 Overview
-
 This guide explains how to securely SSH into an EC2 instance on AWS using your `.pem` key file.
 It also lists common mistakes and their fixes so you can quickly troubleshoot.
 
-## ⚙️ Step 1: Prerequisites
+## Prerequisites
 
 **Before connecting:**
 - You have launched an EC2 instance (**Ubuntu**).
 - You downloaded the key pair (**.pem file**) when creating the instance.
 - You know your instance’s Public **IPv4 address or Public DNS**.
 
-Example:
+**Example:**
 ```vbnet
 Public IPv4: 13.233.123.45
 Public DNS: ec2-13-233-123-45.ap-south-1.compute.amazonaws.com
 Key file: my-key.pem
 ```
 
-## 🔐 Step 2: Secure your key file
+## Secure your key file
 
 Make sure the key file has the correct permissions (Linux/Mac):
 ```sh
 chmod 400 my-key.pem
 ```
 
-> ⚠️ If permissions are too open, SSH will refuse to use the key.
+> If permissions are too open, SSH will refuse to use the key.
 
 
-## 💻 Step 3: Connect to your instance
+## Step-1: Connect to your instance
 
 Use the default Ubuntu user for Ubuntu instances.
 ```sh
@@ -46,7 +44,7 @@ ssh -i "my-key.pem" ubuntu@13.233.123.45
 > - RHEL? → use `ec2-user` or `root`
 
 
-## 🪟 Step 4: For Windows users
+## Step-2: For Windows users
 
 ### Option 1 — Using Git Bash or PowerShell (Recommended)
 
@@ -92,7 +90,7 @@ If you get an error like “***ssh not recognized***”, install **OpenSSH Clien
 5. Click Open → **done!**
 
 
-## 🔓 Step 5: Check your Security Group
+## Step-3: Check your Security Group
 
 Make sure inbound rules allow SSH:
 | Type | Protocol | Port | Source                                    |
@@ -103,9 +101,9 @@ Make sure inbound rules allow SSH:
 > - “0.0.0.0/0” is fine for quick setup or testing
 
 
-## 🧠 Step 6: Troubleshooting & Common Errors
+## Troubleshooting & Common Errors
 
-### ❌ Permission denied (publickey)
+### 1. Permission denied (publickey)
 
 **Cause:**
 - Wrong username (e.g., using **ec2-user** for Ubuntu)
@@ -118,7 +116,7 @@ Make sure inbound rules allow SSH:
 - Run `chmod 400 my-key.pem`
 
 
-### ❌ Connection timed out
+### 2. Connection timed out
 
 **Cause:**
 - Port 22 blocked in Security Group or Network ACL
@@ -134,7 +132,7 @@ Make sure inbound rules allow SSH:
   ```
 
 
-### ❌ Host key verification failed
+### 3. Host key verification failed
 
 **Cause:** SSH cached old key for same IP.
 
@@ -143,7 +141,7 @@ Make sure inbound rules allow SSH:
 ssh-keygen -R <instance-public-ip>
 ```
 
-## 🧩 Step 7: (Optional) Use Verbose Mode for Debugging
+## Use Verbose Mode for Debugging (Optional)
 
 If it still fails, run:
 ```sh
