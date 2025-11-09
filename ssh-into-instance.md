@@ -21,7 +21,7 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   chmod 400 my-key.pem
   ```
 
-  > **⚠️Warning:** If permissions are too open, SSH will refuse to use the key.
+  **⚠️Warning:** If permissions are too open, SSH will refuse to use the key.
 
 
 ## Steps to connect to your EC2 instance
