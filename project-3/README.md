@@ -1,140 +1,88 @@
-# Lift & Shift Migration of Web Application to AWS Cloud]
-
-### 🎯 Purpose
-
-The goal of this Lift & Shift project is to migrate an existing on-premises web application to AWS cloud with minimal changes to the application architecture. This approach provides:
-- **Scalability** – Elastic compute resources
-- **Cost Optimization** – Pay-as-you-go pricing model
-- **Global Reach** – Multi-region infrastructure
-- **High Availability** – Auto-scaling and failover mechanisms
-- **Security & Compliance** – Managed identity and access controls
-- **Faster Time to Market** – Use of AWS-managed services
+# Lift & Shift Migration of Web Application to AWS Cloud
 
 
-### 📚 AWS Resources Used:
-
-1. **Virtual Private Cloud (VPC)**:
-- Custom **VPC** with CIDR block `10.0.0.0/16`
-- **Subnets**: Public and Private in multiple AZs
-- **Routing**: Route Tables, NAT Gateway, Internet Gateway
-- **Security**: NACLs & Security Groups
-
-2. **Identity and Access Management (IAM)**:
-- **Roles & Policies**: For EC2, RDS, and other services
-- **Principle**: Least privilege access
-
-3. **EC2 with Tomcat**:
-- Deployed app servers using Amazon Linux + Tomcat
-- Web servers in Public Subnet, Backend services in Private
-
-4. **Amazon S3**:
-- Storage for static files and backups
-- Enabled encryption and access policies
-
-5. **Application Load Balancer (ALB)**:
-- Distributes traffic across EC2 instances
-- Path-based routing and health checks
-
-6. **Auto Scaling**:
-- Automatically adjusts EC2 instances based on load
-- Integrated with ALB health checks
-
-7. **Amazon RDS**:
-- Managed MySQL/PostgreSQL database
-- Private Subnet deployment with Multi-AZ setup
-
-8. **RabbitMQ**:
-- Installed on EC2 for asynchronous message handling
-- Port `5672` allowed via security groups
-
-9. **Memcached**:
-- In-memory cache deployed on EC2
-- Port `11211` allowed from app servers
-
-10. **Route 53 & DNS Zones**:
-**Definition:** An in-memory key-value store used to speed up dynamic web applications by reducing database load.
-**Purpose:** Caches frequently requested data, such as API responses or rendered pages, to improve performance.
-
-11. **Route 53 & DNS Zones**:
-- **Private Hosted Zone**: For internal resolution
-- **Public DNS (optional)**: For internet-facing domains
+## 🎯 Project Overview
+**Goal:**
+Lift & shift a legacy monolithic web application (Tomcat) from on-prem to AWS, using managed AWS services for scalability, High Availability, and cost efficiency — minimal changes to app architecture.
 
 
-### 🗺️ Architecture Overview
+### AWS Services Used & Architecture Diagram:
 
-![Project Diagram](https://github.com/ahsan598/devops-projects-hands-on/blob/main/project-5-aws-liftshift-webapp/aws-liftshift-webapp.png)
-
-> Deployed architecture includes VPC, ALB, EC2 (Tomcat), RDS, RabbitMQ, Memcached, Auto Scaling, and Route 53.
-
----
-
-### ⚙️ Implementation Steps
-
-1. **VPC Setup**
-```text
-- Create VPC (CIDR: 10.0.0.0/16)
-- Add Public & Private Subnets
-- Configure Route Tables
-- Attach Internet Gateway & NAT Gateway
-- Create Security Groups
-```
-
-2. **IAM Setup**
-```text
-- Create IAM roles for EC2, RDS, etc.
-- Attach policies like AmazonS3ReadOnlyAccess, AmazonRDSFullAccess
-```
-
-3. **EC2 + Tomcat**
-```sh
-sudo yum install tomcat -y
-sudo systemctl start tomcat
-sudo systemctl enable tomcat
-```
-
-4. **Application Load Balancer**
-```text
-- Create ALB with HTTP/HTTPS listeners
-- Register EC2 targets
-- Enable health checks
-```
-
-5. **RDS Deployment**
-```text
-- Launch DB in private subnet
-- Enable Multi-AZ
-- Allow EC2 access via SG
-```
-
-6. **RabbitMQ on EC2**
-```sh
-sudo yum install rabbitmq-server -y
-sudo systemctl start rabbitmq-server
-sudo systemctl enable rabbitmq-server
-```
-
-7. **Memcached on EC2**
-```sh
-sudo yum install memcached -y
-sudo systemctl start memcached
-sudo systemctl enable memcached
-```
-
-8. **Route 53 Setup**
-```text
-- Create Private Hosted Zone
-- Add A/CNAME records for internal services and ALB
-```
+| Layer               |                         Key Services & Components                       |
+| ------------------- | ----------------------------------------------------------------------- |
+| **Networking**          | VPC, Public & Private Subnets, IGW, NAT, Route Tables, SG & NACLs       |
+| **Compute**             | EC2 Instances, Auto Scaling Group                                       |
+| **Load Balancing**      | Application Load Balancer (ALB), ACM for SSL                            |
+| **Database**            | Amazon RDS (MySQL/PostgreSQL, Multi-AZ)                                 |
+| **Messaging**           | RabbitMQ (on EC2, port 5672)                                            |
+| **Caching**             | Memcached (on EC2, port 11211)                                          |
+| **Storage**             | Amazon S3 (static files, backups)                                       |
+| **DNS**                 | Route 53 (public DNS + private hosted zone), Hostinger (external zone)  |
+| **Security**            | IAM Roles/Policies following least-privilege principle                  |
+| **Observability**       | CloudWatch, S3 for logs/billing                                         |
 
 
-### 🛠️ Optional AWS Alternatives
-| Service   | Alternative AWS Service | Description                     |
-| --------- | ----------------------- | ------------------------------- |
-| RabbitMQ  | **Amazon MQ**           | Fully managed ActiveMQ/RabbitMQ |
-| Memcached | **ElastiCache**         | Managed Redis/Memcached caching |
+![Lift-Shift-Architecture](/assets/images/project-3.png)
+
+
+ 
+## 🛠️ Implementation Steps (Console-based)
+
+**1. Networking:**
+- Create VPC + subnets for separation of web app, DB, and backend.
+- Configure route tables, attach IGW/NAT GW, define security rules.
+
+**2 IAM & Security:**
+- Create IAM roles for EC2, RDS (S3, logging, access control).
+- Apply least-privilege to all compute resources.
+
+**3. EC2 Setup:**
+- Launch Amazon Linux EC2, install Tomcat (yum install tomcat).
+- Enable/secure EC2 instances with proper security groups.
+
+**4. ALB & ACM (SSL):**
+- Deploy Application Load Balancer, attach ACM cert for HTTPS.
+- Register EC2s with ALB target group and enable health checks.
+
+**5. Auto Scaling:**
+- Create launch template and auto scaling group for Tomcat EC2s.
+- Link with ALB for flexible, failover scaling.
+
+**6. RDS (DB):**
+- Deploy RDS (MySQL or PostgreSQL) in private subnets, enable Multi-AZ.
+- Set DB SG to allow access only from app EC2s.
+
+**7. Messaging & Caching:**
+- Launch RabbitMQ and Memcached on EC2s, allow access only within VPC.
+
+**8. S3 Storage:**
+- Set up S3 for app static assets/backups; grant access via IAM roles.
+
+**9. Route 53 & DNS:**
+- Configure Route 53 private hosted zone for internal resolution.
+- Optionally use public zone (or Hostinger) for external routing.
 
 
 
-### 📝 Summary
+## 🔍 Validation & Testing
+- Access app via ALB DNS (or domain)
+- Confirm SSL, scaling, and DB connection
+- Test queue/caching functionality (RabbitMQ, Memcached)
+- SSH/Bastion access (if required) for private instances
+- Monitor resources via CloudWatch
 
-This project demonstrates how to lift and shift a monolithic web application to AWS using foundational services like EC2, RDS, VPC, ALB, and S3, while also incorporating message queuing and caching for better scalability and performance.
+
+
+## 💡 Notes & Best Practices
+- All EC2, RDS, and app resources locked to private subnets (security)
+- IAM policies are least-privilege and tightly scoped
+- Messaging/caching still on EC2 for simulating on-prem patterns (ElastiCache/MQ are the managed alternatives)
+- ACM ensures traffic is secured via SSL at ALB
+- S3 for all static assets, logs, and backups
+
+
+
+## ⚠️ Important
+- **Cost Optimization:** Use auto scaling and disable resources when not in use.
+- **Monitoring:** Enable CloudWatch for health and billing.
+- **Security:** Regularly review IAM roles, security group rules, and update as per best practices.
