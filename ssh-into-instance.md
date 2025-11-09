@@ -16,12 +16,10 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   ```
 
 **Secure your key file**
-- Make sure the key file has the correct permissions:
+- Make sure the key file has the correct permissions -If permissions are too open, SSH will refuse to use.
   ```sh
   chmod 400 my-key.pem
   ```
-
-  **⚠️Warning:** If permissions are too open, SSH will refuse to use the key.
 
 
 ## Steps to connect to your EC2 instance
@@ -35,12 +33,16 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   ssh -i "my-key.pem" ubuntu@13.233.123.45
   ```
 
-- Default EC2 SSH usernames by Operating System
-  ```txt
-  Amazon Linux → use `ec2-user`
-  CentOS → use `centos`
-  RHEL → use `ec2-user` or `root`
-  ```
+**List of default EC2 usernames by Operating System**
+
+| **OS / AMI**           | **Default Username**  |
+| ---------------------- | --------------------- |
+| **Amazon Linux**       | `ec2-user`            |
+| **Ubuntu**             | `ubuntu`              |
+| **CentOS**             | `centos`              |
+| **RHEL**               | `ec2-user` or `root`  |
+| **Debian**             | `admin` or `debian`   |
+| **Fedora**             | `fedora`              |
 
 
 ### Step-2 — Connect using PuTTY
