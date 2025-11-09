@@ -3,7 +3,7 @@
 This guide explains how to securely SSH into an EC2 instance on AWS using your `.pem` key file.
 It also lists common mistakes and their fixes so you can quickly troubleshoot.
 
-## Prerequisites
+## ⚙️ Prerequisites
 
 **Before connecting:**
 - You have launched an EC2 instance (**Ubuntu**).
@@ -22,16 +22,16 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   ```
 
 
-## Steps to connect to your EC2 instance
+## 🚀 Steps to connect to your EC2 instance
 
 ### Step-1: Connect using Git Bash / PowerShell (Recommended)
-- Just open **Git Bash** or **PowerShell**, then run:
-  ```sh
-  ssh -i "C:\path\to\my-key.pem" ubuntu@<Public-IP>
+Just open **Git Bash** or **PowerShell**, then run:
+```sh
+ssh -i "C:\path\to\my-key.pem" ubuntu@<Public-IP>
 
-  # Use the default Ubuntu user for Ubuntu instances
-  ssh -i "my-key.pem" ubuntu@13.233.123.45
-  ```
+# Use the default Ubuntu user for Ubuntu instances
+ssh -i "my-key.pem" ubuntu@13.233.123.45
+```
 
 **List of default EC2 usernames by Operating System**
 
@@ -57,7 +57,7 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
 
 
 
-## Troubleshooting & Common Errors
+## 🛠️ Troubleshooting & Common Errors
 
 ### 1. Permission denied (publickey)
 **Cause:**
@@ -86,8 +86,7 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   ```
 
 
-## Tips
+## 💡 Tips
 - Never share your `.pem` file — it’s your private key.
-- Keep your instance Security Group restricted to your IP.
-- Use Elastic IP for a permanent public address.
-- For automation, consider AWS Systems Manager Session Manager (no SSH key needed).
+- Keep your instance Security Group restricted to **your IP**.
+- Use **Elastic IP** for a permanent public address.
