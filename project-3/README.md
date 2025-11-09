@@ -6,7 +6,7 @@
 Lift & shift a legacy monolithic web application (Tomcat) from on-prem to AWS, using managed AWS services for scalability, High Availability, and cost efficiency — minimal changes to app architecture.
 
 
-### AWS Services Used & Architecture Diagram:
+### AWS Services Used
 
 | Layer               |                         Key Services & Components                       |
 | ------------------- | ----------------------------------------------------------------------- |
@@ -22,10 +22,11 @@ Lift & shift a legacy monolithic web application (Tomcat) from on-prem to AWS, u
 | **Observability**       | CloudWatch, S3 for logs/billing                                         |
 
 
+### Architecture Diagram
 ![Lift-Shift-Architecture](/assets/images/project-3.png)
 
 
- 
+
 ## 🛠️ Implementation Steps (Console-based)
 
 **1. Networking:**
@@ -37,7 +38,7 @@ Lift & shift a legacy monolithic web application (Tomcat) from on-prem to AWS, u
 - Apply least-privilege to all compute resources.
 
 **3. EC2 Setup:**
-- Launch Amazon Linux EC2, install Tomcat (yum install tomcat).
+- Launch Amazon Linux EC2, install Tomcat on an instances.
 - Enable/secure EC2 instances with proper security groups.
 
 **4. ALB & ACM (SSL):**
