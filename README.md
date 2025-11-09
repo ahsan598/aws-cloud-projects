@@ -1,4 +1,4 @@
-# <img src="assets/icons/aws.png" alt="AWS" width="50"/> AWS Cloud Projects
+# <img src="assets/icons/aws-logo.png" alt="AWS" width="50"/> AWS Cloud Projects
 
 This repository contains hands-on AWS projects demonstrating cloud architecture, deployment, and migration use cases. Each project highlights practical implementations using core AWS services.
 Focus on real-world use cases like secure user management, scalable compute, storage solutions, and networking fundamentals. Perfect for practicing cloud administration and automation.
