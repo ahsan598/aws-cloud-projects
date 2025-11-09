@@ -1,4 +1,4 @@
-# SSH into an AWS EC2 Instance
+# 💻 SSH into an AWS EC2 Instance
 
 This guide explains how to securely SSH into an EC2 instance on AWS using your `.pem` key file.
 It also lists common mistakes and their fixes so you can quickly troubleshoot.
@@ -16,7 +16,7 @@ It also lists common mistakes and their fixes so you can quickly troubleshoot.
   ```
 
 **Secure your key file**
-- Make sure the key file has the correct permissions -If permissions are too open, SSH will refuse to use.
+- Make sure the key file has the correct permissions - If permissions are too open, SSH will refuse to use.
   ```sh
   chmod 400 my-key.pem
   ```
