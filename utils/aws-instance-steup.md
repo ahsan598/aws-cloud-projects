@@ -52,12 +52,12 @@ Download and save the key securely.
 - Instance Configuration
    | Setting        | Value                             |
    | -------------- | --------------------------------- |
-   | Name           | `Ubuntu-Server`                   |
+   | Name           | **Ubuntu-Server**                 |
    | AMI            | **Ubuntu Server 24.04 LTS**       |
-   | Instance Type  | **t2.micro** (Free-tier eligible) |
+   | Instance Type  | **t2.micro**                      |
    | Key Pair       | `ubuntu-server-key.pem`           |
    | Security Group | `ubuntu_server_sg`                |
-   | Storage        | 10GB gp3                          |
+   | Storage        | **10GB gp3**                      |
 - Click **Launch** Instance
 
 
