@@ -26,7 +26,7 @@ A quick guide to launch an **Ubuntu** based EC2 instance on AWS.
    | SSH   | TCP      | 22         | 0.0.0.0/0 | SSH access         |
    | HTTP  | TCP      | 80         | 0.0.0.0/0 | Web (optional)     |
    | HTTPS | TCP      | 443        | 0.0.0.0/0 | Web SSL (optional) |
-- Click **Create security group**
+- Click **Save**
 
 
 ### Step-2: Create SSH Key Pair
@@ -48,16 +48,16 @@ Download and save the key securely.
 ### Step-3: Launch an EC2 Instance
 
 **3.1 Navigate to EC2 Dashboard**
-- Go to: EC2 Dashboard → Instances → Launch Instance
+- Go to **EC2 Dashboard → Instances → Launch Instance**
 - Instance Configuration
-| Setting        | Value                             |
-| -------------- | --------------------------------- |
-| Name           | `Ubuntu-Server`                   |
-| AMI            | **Ubuntu Server 24.04 LTS**       |
-| Instance Type  | **t2.micro** (Free-tier eligible) |
-| Key Pair       | `ubuntu-server-key.pem`           |
-| Security Group | `ubuntu_server_sg`                |
-| Storage        | 08–10 GB gp3                      |
+   | Setting        | Value                             |
+   | -------------- | --------------------------------- |
+   | Name           | `Ubuntu-Server`                   |
+   | AMI            | **Ubuntu Server 24.04 LTS**       |
+   | Instance Type  | **t2.micro** (Free-tier eligible) |
+   | Key Pair       | `ubuntu-server-key.pem`           |
+   | Security Group | `ubuntu_server_sg`                |
+   | Storage        | 10GB gp3                          |
 - Click **Launch** Instance
 
 
@@ -84,4 +84,4 @@ sudo apt install -y curl wget git unzip
 ```
 
 
-Your Ubuntu EC2 instance is now ready for general use or further configuration.
+**Your Ubuntu EC2 instance is now ready for general use or further configuration.**
